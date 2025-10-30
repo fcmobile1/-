@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Конспект УП.05 — Модель архитектуры ИС на примере "Интернет-магазин"</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1000px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin-top: 30px;
+    color: #34495e;
+  }
+  h3 {
+    margin-top: 20px;
+    color: #7f8c8d;
+  }
+  p {
+    margin: 10px 0;
+  }
+  ul {
+    margin: 10px 0 10px 20px;
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>УП.05 — Разработка модели архитектуры ИС на примере "Интернет-магазин"</h1>
+<h2><p>Для ознакомления со списком лекций, перейдите по <a href="practica.html">ссылке</a>.</p></h2>
+<h2>Цель</h2>
+<p>Спроектировать и отобразить графически основные компоненты системы, их взаимодействие и место в общей структуре.</p>
+
+<h2>1. Выбор типа архитектуры</h2>
+<p>Для веб-приложений, таких как интернет-магазин, наиболее распространена <strong>трехуровневая (трехзвенная) архитектура</strong>. Она обеспечивает модульность, масштабируемость и безопасность.</p>
+<ul>
+  <li><strong>Уровень 1 (Presentation Layer):</strong> Клиентская часть (браузер).</li>
+  <li><strong>Уровень 2 (Business Logic Layer):</strong> Серверная часть — логика системы.</li>
+  <li><strong>Уровень 3 (Data Access Layer):</strong> Уровень данных — хранение информации.</li>
+</ul>
+
+<h2>2. Декомпозиция архитектуры на модели (диаграммы)</h2>
+<p>Создаем несколько взаимосвязанных моделей:</p>
+
+<h3>Модель 1: Контекстная диаграмма (Диаграмма окружения)</h3>
+<p>Показать взаимодействие системы с внешними системами и субъектами:</p>
+<ul>
+  <li><strong>Покупатель:</strong> взаимодействует через браузер.</li>
+  <li><strong>Платежный шлюз:</strong> внешняя система для платежей (например, ЮKassa).</li>
+  <li><strong>Курьерская служба:</strong> передача данных о доставке, получение трек-номера.</li>
+  <li><strong>Админ магазина:</strong> управление контентом и заказами через админ-панель.</li>
+</ul>
+
+<h3>Модель 2: Компонентная диаграмма (Логическая архитектура)</h3>
+<p>Основные программные модули и связи между ними:</p>
+<ul>
+  <li><strong>Frontend:</strong> интерфейс пользователя (React, Vue.js).</li>
+  <li><strong>Backend (сервер):</strong>
+    <ul>
+      <li>API Gateway — точка входа.</li>
+      <li>Модуль аутентификации.</li>
+      <li>Модуль каталога.</li>
+      <li>Модуль заказов.</li>
+      <li>Модуль оплаты.</li>
+      <li>Модуль уведомлений.</li>
+    </ul>
+  </li>
+  <li><strong>Уровень данных:</strong>
+    <ul>
+      <li>База данных (PostgreSQL/MySQL).</li>
+      <li>Кеш (Redis).</li>
+      <li>Файловое хранилище (S3).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Модель 3: Физическая архитектура (Деплоймент-диаграмма)</h3>
+<p>Реальные компоненты системы на серверах:</p>
+<pre>
+flowchart TD
+    subgraph Internet [Интернет]
+        direction LR
+        A1[Пользователи]
+        A2[Администраторы]
+    end
+
+    subgraph DMZ [Демилитаризованная зона]
+        B1[Балансировщик нагрузки]
+    end
+
+    subgraph InternalNetwork [Внутренняя сеть]
+        subgraph WebTier [Веб-уровень]
+            C1[Веб-сервер 1]
+            C2[Веб-сервер 2]
+        end
+
+        subgraph AppTier [Уровень приложений]
+            D1[Сервер приложений 1]
+            D2[Сервер приложений 2]
+        end
+
+        subgraph DataTier [Уровень данных]
+            E1[Кластер БД]
+            E2[Сервер кеша]
+        end
+    end
+
+    A1 --> B1
+    A2 --> B1
+    B1 --> C1
+    B1 --> C2
+    C1 --> D1
+    C2 --> D2
+    D1 --> E1
+    D2 --> E2
+</pre>
+
+<h3>Модель 4: Модель данных (ER-диаграмма)</h3>
+<p>Структура базы данных — основные сущности и связи:</p>
+<pre>
+erDiagram
+    USERS {
+        int id PK
+        string email
+        string password_hash
+        string name
+    }
+
+    PRODUCTS {
+        int id PK
+        string name
+        text description
+        decimal price
+        int category_id FK
+    }
+
+    CATEGORIES {
+        int id PK
+        string name
+    }
+
+    ORDERS {
+        int id PK
+        int user_id FK
+        datetime order_date
+        string status
+        decimal total_amount
+    }
+
+    ORDER_ITEMS {
+        int id PK
+        int order_id FK
+        int product_id FK
+        int quantity
+        decimal price
+    }
+
+    USERS ||--o{ ORDERS : "places"
+    CATEGORIES ||--o{ PRODUCTS : "contains"
+    ORDERS ||--o{ ORDER_ITEMS : "includes"
+    PRODUCTS }o--o{ ORDER_ITEMS : "in"
+</pre>
+
+<h2>Оформление в отчете по УП.05</h2>
+<ul>
+  <li><strong>Введение:</strong> обоснование выбранной архитектуры (трехуровневая, микросервисная).</li>
+  <li><strong>Диаграммы:</strong> все 4 модели с подробными пояснениями.</li>
+  <li><strong>Связь с требованиями:</strong> показать, как архитектура обеспечивает функциональные и нефункциональные требования (например, балансировщик нагрузки для надежности).</li>
+  <li><strong>Вывод:</strong> краткое объяснение, почему предложенная архитектура оптимальна для проекта.</li>
+</ul>
+<p>Эта работа показывает ваше понимание, как реализовать архитектуру на практике.</p>
+</div>
+</body>
+</html>

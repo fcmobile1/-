@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Лекция № 4: Структура ОС и микроядерная архитектура</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    .container {
+        max-width: 800px;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        line-height: 1.6;
+        color: #333;
+    }
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 0;
+    }
+    h2 {
+        color: #34495e;
+        border-bottom: 2px solid #bdc3c7;
+        padding-bottom: 5px;
+        margin-top: 30px;
+    }
+    p {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .questions {
+        margin-top: 30px;
+        background-color: #e8f0fe;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .questions h3 {
+        margin-top: 0;
+        color: #2980b9;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Лекция № 4: Структура ОС и микроядерная архитектура</h1>
+    <h2><p>Для ознакомления с предыдущей лекцией, перейдите по <a href="index1.html">ссылке</a>.</p></h2>
+    <p><strong>Кратко:</strong> Обзор структуры операционных систем, видов ядер и модели клиент-сервер в микроядерной архитектуре.</p>
+    
+    <h2>Основные компоненты структуры ОС</h2>
+    <ul>
+        <li>Ядро (Kernel): управляет процессами, памятью, устройствами.</li>
+        <li>Менеджер процессов: создание, завершение процессов.</li>
+        <li>Менеджер памяти: управление оперативной памятью, виртуальной памятью.</li>
+        <li>Подсистема ввода/вывода: взаимодействие с периферийными устройствами.</li>
+        <li>Файловая система: организация данных на носителях.</li>
+        <li>Системные библиотеки и пользовательский интерфейс: GUI или CLI.</li>
+    </ul>
+    
+    <h2>Виды ядер ОС</h2>
+    <ul>
+        <li><strong>Монолитное ядро:</strong> всё в одном файле, высокая производительность, примеры: Linux, UNIX.</li>
+        <li><strong>Микроядро:</strong> минимальное ядро, остальное — серверы и процессы, примеры: Minix, QNX.</li>
+        <li><strong>Гибридное ядро:</strong> сочетание монолитного и микроядра, примеры: Windows NT, macOS (XNU).</li>
+    </ul>
+    
+    <h2>Микроядерная архитектура (модель клиент-сервер)</h2>
+    <ul>
+        <li><strong>Основы:</strong> ядро управляет только базовыми функциями, остальные — отдельные сервисы (серверы).</li>
+        <li><strong>Преимущества:</strong> изоляция, безопасность, модульность, легкое обновление.</li>
+        <li><strong>Недостатки:</strong> сложное взаимодействие через IPC, накладные расходы.</li>
+        <li><strong>Пример работы:</strong> запуск редактора → запрос файла → сервер файловой системы → ответ.</li>
+        <li><strong>Примеры ОС:</strong> Minix, QNX, GNU Hurd.</li>
+    </ul>
+    
+    <div class="questions">
+        <h3>Контрольные вопросы</h3>
+        <ul>
+            <li>Какие компоненты входят в структуру ОС?</li>
+            <li>Отличия монолитного ядра и микроядра?</li>
+            <li>Преимущества клиент-серверной модели в микроядерной архитектуре?</li>
+            <li>Примеры ОС с микроядерной архитектурой?</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

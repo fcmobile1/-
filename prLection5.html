@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Конспект УП.05 — Обоснование выбора средств проектирования системы интернет-магазина</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1000px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin-top: 30px;
+    color: #34495e;
+  }
+  h3 {
+    margin-top: 20px;
+    color: #7f8c8d;
+  }
+  p {
+    margin: 10px 0;
+  }
+  ul {
+    margin: 10px 0 10px 20px;
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+  pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>УП.05 — Обоснование выбора средств проектирования системы интернет-магазина</h1>
+<h2><p>Для ознакомления со списком лекций, перейдите по <a href="practica.html">ссылке</a>.</p></h2>
+<h2>Введение</h2>
+<p>Целью проекта является создание надежного, масштабируемого и удобного интернет-магазина. Выбор технологического стека обусловлен следующими ключевыми требованиями:</p>
+<ul>
+  <li><strong>Функциональность:</strong> управление товарами, корзина, оформление заказа, личный кабинет, интеграция с платежными системами и службами доставки.</li>
+  <li><strong>Производительность:</strong> быстрая загрузка страниц, особенно каталога и карточек товаров.</li>
+  <li><strong>Масштабируемость:</strong> возможность роста числа товаров и пользователей без потери производительности.</li>
+  <li><strong>Безопасность:</strong> защита персональных данных клиентов и платежной информации.</li>
+  <li><strong>Стоимость владения:</strong> оптимальное соотношение цены и качества, включая хостинг, лицензии и затраты на разработку.</li>
+  <li><strong>Сроки выхода на рынок:</strong> возможность быстро запустить MVP и постепенно наращивать функционал.</li>
+</ul>
+
+<h2>1. Бэкенд (Server-Side)</h2>
+<h3>Выбор:</h3>
+<p><strong>Python / Django</strong> (альтернативы: Node.js/Express, PHP/Laravel, C#/.NET)</p>
+<h3>Обоснование:</h3>
+<ul>
+  <li><strong>Скорость разработки:</strong> Django — фреймворк с концепцией "батарейки в комплекте" (Batteries-Included). Предоставляет встроенные компоненты для админки, аутентификации, ORM, что ускоряет создание функций интернет-магазина.</li>
+  <li><strong>Безопасность:</strong> встроенная защита от CSRF, SQL-инъекций, XSS.</li>
+  <li><strong>Надежность и структура:</strong> архитектура MVC, документация.</li>
+  <li><strong>Экосистема:</strong> множество пакетов, например, Django REST Framework, django-oscar.</li>
+  <li><strong>Масштабируемость:</strong> позволяет масштабировать, вынося задачи в фоновые очереди (Celery).</li>
+</ul>
+<p><em>Почему не PHP:</em> Django более структурирован и подходит для сложной бизнес-логики и аналитики.</p>
+
+<h2>2. Фронтенд (Client-Side)</h2>
+<h3>Выбор:</h3>
+<p><strong>React.js</strong> (альтернативы: Vue.js, Angular, Svelte)</p>
+<h3>Обоснование:</h3>
+<ul>
+  <li><strong>Интерактивность и UX:</strong> SPA — динамическое обновление без перезагрузки.</li>
+  <li><strong>Компонентный подход:</strong> переиспользуемые компоненты, единообразие.</li>
+  <li><strong>Производительность:</strong> Virtual DOM.</li>
+  <li><strong>Сообщество:</strong> много библиотек, решений, разработчиков.</li>
+  <li><strong>Миграция на Next.js:</strong> для SSR и SEO в будущем.</li>
+</ul>
+<p><em>Почему не чистый JavaScript/jQuery:</em> недостаточно современно для полноценного интернет-магазина, SPA лучше по UX и обслуживаемости.</p>
+
+<h2>3. База данных</h2>
+<h3>Выбор:</h3>
+<p><strong>PostgreSQL</strong> (альтернативы: MySQL, MongoDB)</p>
+<h3>Обоснование:</h3>
+<ul>
+  <li><strong>Надежность и транзакции:</strong> поддержка ACID.</li>
+  <li><strong>Функционал:</strong> поддержка JSONB, аналитика.</li>
+  <li><strong>Масштабируемость:</strong> высокая производительность при нагрузках.</li>
+  <li><strong>Бесплатно:</strong> open-source.</li>
+</ul>
+<p><em>Почему не MongoDB:</em> реляционная структура предпочтительнее для заказов, пользователей, товаров.</p>
+
+<h2>4. Кэширование</h2>
+<h3>Выбор:</h3>
+<p><strong>Redis</strong></p>
+<h3>Обоснование:</h3>
+<ul>
+  <li><strong>Скорость:</strong> хранение в RAM.</li>
+  <li><strong>Использование:</strong> кэш страниц, корзина, очереди задач.</li>
+</ul>
+
+<h2>5. Поиск</h2>
+<h3>Выбор:</h3>
+<p><strong>Elasticsearch</strong></p>
+<h3>Обоснование:</h3>
+<ul>
+  <li><strong>Полнотекстовый поиск:</strong> быстрый, релевантный, с исправлением опечаток.</li>
+  <li><strong>Фильтрация:</strong> фасетный поиск по атрибутам.</li>
+  <li><strong>Производительность:</strong> справляется с нагрузками лучше SQL LIKE-запросов.</li>
+</ul>
+
+<h2>6. Хостинг и развертывание</h2>
+<h3>Выбор:</h3>
+<p><strong>Docker + AWS / VPS (например, Selectel)</strong></p>
+<h3>Обоснование:</h3>
+<ul>
+  <li><strong>Контейнеризация:</strong> переносимость, изоляция, упрощение деплоя.</li>
+  <li><strong>Облачная платформа:</strong> гибкость, надежность, масштабируемость.</li>
+</ul>
+
+<h2>Таблица: Технологический стек</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Компонент системы</th>
+      <th>Выбранная технология</th>
+      <th>Альтернативы</th>
+      <th>Ключевая причина выбора</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Бэкенд-фреймворк</td>
+      <td>Python / Django</td>
+      <td>Node.js, Laravel, .NET</td>
+      <td>Скорость разработки, встроенная безопасность, "батарейки в комплекте"</td>
+    </tr>
+    <tr>
+      <td>Фронтенд-фреймворк</td>
+      <td>React.js</td>
+      <td>Vue.js, Angular</td>
+      <td>Интерактивность, компонентный подход, сильное сообщество</td>
+    </tr>
+    <tr>
+      <td>База данных</td>
+      <td>PostgreSQL</td>
+      <td>MySQL, MongoDB</td>
+      <td>Надежность (ACID), богатый функционал, бесплатность</td>
+    </tr>
+    <tr>
+      <td>Кэширование / Очереди</td>
+      <td>Redis</td>
+      <td>Memcached, RabbitMQ</td>
+      <td>Скорость (in-memory), универсальность</td>
+    </tr>
+    <tr>
+      <td>Поисковая система</td>
+      <td>Elasticsearch</td>
+      <td>Apache Solr, Sphinx</td>
+      <td>Быстрый релевантный поиск, мощная фильтрация</td>
+    </tr>
+    <tr>
+      <td>Контейнеризация</td>
+      <td>Docker</td>
+      <td>-</td>
+      <td>Изоляция, переносимость, упрощение развертывания</td>
+    </tr>
+    <tr>
+      <td>Хостинг / Cloud</td>
+      <td>AWS / VPS (Selectel)</td>
+      <td>Google Cloud, Azure</td>
+      <td>Гибкость, масштабируемость, надежность</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Заключение</h2>
+<p>Предложенный стек технологий — сбалансированное и современное решение, которое обеспечивает быструю разработку, высокую производительность, безопасность и масштабируемость. Основан на популярных и зрелых технологиях, что гарантирует поддержку и развитие проекта в долгосрочной перспективе.</p>
+</div>
+</body>
+</html>
